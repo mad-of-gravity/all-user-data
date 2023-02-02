@@ -13,13 +13,13 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("https://dummyjson.com/users?limit=100");
-
-      if (response.ok) {
+      try {
+        const response = await fetch("https://dummyjson.com/users?limit=100");
         const regUsers = await response.json();
         setRegisteredUsers(...registeredUsers, regUsers.users);
-      } else {
-        console.error("Error retrieving data..");
+
+      } catch(err) {
+        console.error(err.message);
       }
     }
 
